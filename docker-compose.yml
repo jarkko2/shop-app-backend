@@ -1,0 +1,44 @@
+version: '3'
+services:
+
+  shopapp-mongo:
+    image: "mongo"
+    container_name: shopapp-mongo
+    volumes:
+      - shopapp-mongo-data:/var/lib/mongo/data
+    ports:
+      - 27017:27017
+       
+  shopapp-backend:
+    build: .
+    container_name: shopapp-backend
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=admin
+        - MONGO_INITDB_ROOT_PASSWORD=root66
+        - SECRET=shopapp
+        - SESSION_SECRET = kkdfkol2!!fasKKs
+        - MONGODB_URI=mongodb://shopapp-mongo:27017/
+        - TEST_MONGODB_URI = mongodb://shopapp-mongo:27017/
+        - NODE_ENV=test
+        - PORT=5001
+    ports:
+      - 5001:5001
+    links:
+      - shopapp-mongo
+    restart: on-failure
+    depends_on:
+        - shopapp-mongo
+
+
+
+  shopapp-frontend:
+    build: ../shop-app-frontend
+    container_name: shopapp-frontend
+    ports:
+      - 3000:3000
+    links:
+      - shopapp-backend
+
+
+volumes:
+  shopapp-mongo-data:

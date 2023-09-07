@@ -1,0 +1,66 @@
+@hostname = localhost
+@port = 5001
+@host = {{hostname}}:{{port}}
+
+@ObjectID = 6362379e82d326f154b16757
+
+### Get all items in shop
+GET http://{{host}}/api/items/
+
+### Get all items in cart
+GET http://{{host}}/api/shoppingcart/
+
+### Get all items in cart with names and total
+GET http://{{host}}/api/shoppingcart/names
+
+### Add Fridge shopping cart
+POST http://{{host}}/api/shoppingcart/
+Content-Type: application/json
+
+{
+  "itemId" : "6362360d6b6bc7db4ad946fa"
+}
+
+### Add Freezer shopping cart
+POST http://{{host}}/api/shoppingcart/
+Content-Type: application/json
+
+{
+  "itemId" : "6362379e82d326f154b16757"
+}
+
+### Add TV shopping cart
+POST http://{{host}}/api/shoppingcart/
+Content-Type: application/json
+
+{
+  "itemId" : "636237b282d326f154b16759"
+}
+
+### Add Table shopping cart
+POST http://{{host}}/api/shoppingcart/
+Content-Type: application/json
+
+{
+  "itemId" : "636237c482d326f154b1675b"
+}
+
+### Add SSD drive shopping cart
+POST http://{{host}}/api/shoppingcart/
+Content-Type: application/json
+
+{
+  "itemId" : "63733f4ddf00c14a33c4f0e4"
+}
+
+### Remove from shopping cart
+PUT http://{{host}}/api/shoppingcart/{{ObjectID}}
+
+### Remove all from shopping cart with id
+PUT http://{{host}}/api/shoppingcart/removeall/{{ObjectID}}
+
+### Place order
+POST http://{{host}}/api/shoppingcart/order
+
+### Clear cart
+POST http://{{host}}/api/shoppingcart/clear

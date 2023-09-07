@@ -1,0 +1,32 @@
+[
+      {
+        "name": "Fridge",
+        "price": 699.99,
+        "category": "householdappliances"
+      },
+      {
+        "name": "Freezer",
+        "price": 499.99,
+        "category": "electronics"
+      },
+      {
+        "name": "TV",
+        "price": 299.99,
+        "category": "electronics"
+      },
+      {
+        "name": "Table",
+        "price": 199.99,
+        "category": "furniture"
+      },
+      {
+        "name": "Chair",
+        "price": 39.99,
+        "category": "furniture"
+      },
+      {
+        "name": "Chair",
+        "price": 49.99,
+        "category": "furniture"
+      }
+]
