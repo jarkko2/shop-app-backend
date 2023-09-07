@@ -43,7 +43,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: new MongoDBStore({
-    uri: MONGO_URI,
+    uri: config.MONGODB_URI,
     collection: 'passport-sessions',
   }),
    cookie: { secure: false }
