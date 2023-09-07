@@ -1,0 +1,46 @@
+@hostname = localhost
+@port = 5001
+@host = {{hostname}}:{{port}}
+
+@ObjectID = 637e107b8da4803ca9e4d5cb
+
+### Get all items
+GET http://{{host}}/api/items/
+
+### Get item by id
+GET http://{{host}}/api/items/{{ObjectID}}
+
+### Get items by category
+GET http://localhost:5001/api/items?category=furniT
+
+### Get items by category
+GET http://localhost:5001/api/items?category=ca
+
+### Get all items price lower than
+GET http://localhost:5001/api/items?numericFilters=price<400
+
+### Get items by category and price lower than
+GET http://localhost:5001/api/items?category=fur&numericFilters=price<50
+
+### Get items by category and price lower than and sort by price cheapest first
+GET http://localhost:5001/api/items?category=fur&numericFilters=price<50&sort=price
+
+### Get items by price cheapest first
+GET http://localhost:5001/api/items?sort=price
+
+### Get items by price highest first
+GET http://localhost:5001/api/items?sort=-price
+
+### Create a new item
+POST http://{{host}}/api/items/
+Content-Type: application/json
+
+{
+  "name": "TestItem",
+  "price": 49.99,
+  "category": "components"
+}
+
+### Delete item by id
+DELETE http://{{host}}/api/items/{{ObjectID}}
+

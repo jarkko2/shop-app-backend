@@ -1,0 +1,57 @@
+@hostname = localhost
+@port = 5001
+@host = {{hostname}}:{{port}}
+
+@ObjectID = 637e105e8da4803ca9e4d5c5
+
+### Get all feedback
+GET http://{{host}}/api/feedback/admin
+
+### Get all replied feedback
+GET http://{{host}}/api/feedback/admin?replied=true
+
+### Get all not replied feedback
+GET http://{{host}}/api/feedback/admin?replied=false
+
+### Sort by date descending
+GET http://{{host}}/api/feedback/admin?sort=date
+
+### Sort by date ascending
+GET http://{{host}}/api/feedback/admin?sort=-date
+
+### Get feedbacks in time range and sort by date ascending
+GET http://{{host}}/api/feedback/admin?startDate=2022-11-09&endDate=2022-11-18&sort=-date
+
+### Sort by email
+GET http://{{host}}/api/feedback/admin?sort=-email
+
+### Get feedback by date
+GET http://{{host}}/api/feedback/admin?startDate=2022-11-11&endDate=2022-11-15
+
+### Get by id
+GET http://{{host}}/api/feedback/admin/{{ObjectID}}
+
+### Reply feedback by id
+PUT http://{{host}}/api/feedback/admin/{{ObjectID}}
+Content-Type: application/json
+
+{
+  "reply": "aha"
+}
+
+### Delete by id
+DELETE http://{{host}}/api/feedback/admin/{{ObjectID}}
+
+
+### Create a new feedback
+POST http://{{host}}/api/feedback/
+Content-Type: application/json
+
+{
+  "subject": "Test feedback",
+  "text": "Test"
+}
+
+### Get all own feedbacks
+GET http://{{host}}/api/feedback/user
+

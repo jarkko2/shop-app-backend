@@ -1,0 +1,55 @@
+@hostname = localhost
+@port = 5001
+@host = {{hostname}}:{{port}}
+
+### Register an admin
+POST http://{{host}}/api/users/register/
+Content-Type: application/json
+
+{
+  "username" : "shopAdmin",
+  "name": "Jarkko",
+  "email": "admin@email.com",
+  "password": "testing",
+  "passwordConfirmation": "testing",
+  "role" : "admin"
+}
+
+### Register an regular user
+POST http://{{host}}/api/users/register/
+Content-Type: application/json
+
+{
+  "username" : "testuser",
+  "name": "Jarkko4",
+  "email": "testuser@email.com",
+  "password": "testing",
+  "passwordConfirmation": "testing"
+}
+
+
+### Send incorrect login form for admin
+POST http://{{host}}/api/users/login/password
+Content-Type: application/x-www-form-urlencoded
+
+username=shopAdmin&password=testing2
+
+### Send correct login form for admin
+POST http://{{host}}/api/users/login/password
+Content-Type: application/x-www-form-urlencoded
+
+username=shopAdmin&password=testing
+
+### Send login form for user
+POST http://{{host}}/api/users/login/password
+Content-Type: application/x-www-form-urlencoded
+
+username=testuser&password=testing
+
+### Send logout form
+POST http://{{host}}/api/users/logout
+Content-Type: application/x-www-form-urlencoded
+
+### Send online check
+POST http://{{host}}/api/users/onlinecheck
+Content-Type: application/x-www-form-urlencoded

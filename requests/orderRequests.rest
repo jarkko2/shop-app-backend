@@ -1,0 +1,59 @@
+@hostname = localhost
+@port = 5001
+@host = {{hostname}}:{{port}}
+
+@ObjectID = 637e10368da4803ca9e4d5bf
+
+### Get all items
+GET http://{{host}}/api/orders/admin
+
+
+### Get all items latest first
+GET http://{{host}}/api/orders/admin?sort=-date
+
+### Get items by owner
+GET http://{{host}}/api/orders/admin?owner=user4@email.com
+
+### Get items by owner and by completed
+GET http://{{host}}/api/orders/admin?owner=user4@email.com&open=true
+
+### Get items by date
+GET http://{{host}}/api/orders/admin?startDate=2022-11-01&endDate=2022-11-15
+
+### Get items by date without end date
+GET http://{{host}}/api/orders/admin?startDate=2022-11-09
+
+### Get items by date without start date
+GET http://{{host}}/api/orders/admin?endDate=2022-11-09
+
+### Get items in time range and sort by date newest first
+GET http://{{host}}/api/orders/admin?startDate=2022-11-09&endDate=2022-11-20&sort=-date
+
+### Sort by owner
+GET http://{{host}}/api/orders/admin?sort=owner
+
+### Get order by id
+GET http://{{host}}/api/orders/admin/{{ObjectID}}
+
+### Delete order by id
+DELETE  http://{{host}}/api/orders/admin/{{ObjectID}}
+
+### Filter by not completed
+GET http://{{host}}/api/orders/admin?open=false
+
+### Filter by completed
+GET http://{{host}}/api/orders/admin?open=true
+
+### Toggle order completed
+POST http://{{host}}/api/orders/admin/{{ObjectID}}
+
+### Toggle all orders completed
+POST http://{{host}}/api/orders/admin/
+
+#### User 
+
+### Get order history
+GET http://{{host}}/api/orders/history
+
+### Get order history and sort by date
+GET http://{{host}}/api/orders/history?sort=-date
