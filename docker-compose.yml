@@ -1,17 +1,18 @@
-version: '3.9'
+version: '3.8'
 services:
   mongo:
     image: mongo:latest
     restart: unless-stopped
     container_name: mongo
     volumes:
-      - mongo:/data/db
+     # - mongo:/data/db
+       - mongodb:/data/db
     ports:
-      - 27017:27017
+      - 7017:27017
     environment:
       - MONGO_INITDB_DATABASE=shopapp
-      - MONGO_INITDB_ROOT_USERNAME=username
-      - MONGO_INITDB_ROOT_PASSWORD=password
+     # - MONGO_INITDB_ROOT_USERNAME=username
+     # - MONGO_INITDB_ROOT_PASSWORD=password
 
   shopapp-backend:
     build: .
@@ -19,17 +20,20 @@ services:
     environment:
         - SECRET=shopapp
         - SESSION_SECRET = kkdfkol2!!fasKKs
-        -  MONGODB_URI=mongodb://username:password@mongo:27017/shopapp?authSource=admin
-        - TEST_MONGODB_URI = mongodb://username:password@mongo:27017/shopapp?authSource=admin
+      #  - MONGODB_URI=mongodb://username:password@mongo:27017/shopapp?authSource=admin
+      #  - TEST_MONGODB_URI = mongodb://username:password@mongo:27017/shopapp?authSource=admin
+        - MONGODB_URI=mongodb://mongo:27017/shopapp
         - NODE_ENV=production
         - PORT=5001
     ports:
       - 5001:5001
-    restart: on-failure
+    restart: always
     depends_on:
         - mongo
     stdin_open: true
     tty: true
+    links:
+      - mongo
 
 
   shopapp-frontend:
@@ -38,15 +42,15 @@ services:
     ports:
       - 3000:3000
 
-  webserver:
-    image: nginx:latest
-    ports:
-      - 80:80
-      - 443:443
-    restart: always
-    volumes:
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
+  #webserver:
+  #  image: nginx:latest
+  #  ports:
+  #    - 80:80
+  #    - 443:443
+  #  restart: always
+  #  volumes:
+  #    - ./nginx/conf/:/etc/nginx/conf.d/:ro
 
 volumes:
-  mongo:
-    external: true
+  mongodb:
+    #external: true
