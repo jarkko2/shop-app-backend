@@ -14,7 +14,12 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=password
 
   shopapp-backend:
+    # Local repository build
     build: .
+
+    #Registry build
+    #image: jarkko1/shop-app:backend
+
     container_name: shopapp-backend
     environment:
         - SECRET=shopapp
@@ -34,7 +39,12 @@ services:
       - mongo
 
   shopapp-frontend:
+    # Local repository build
     build: ../shop-app-frontend
+
+    # Registry build
+    #image: jarkko1/shop-app:frontend
+
     container_name: shopapp-frontend
     ports:
       - 3000:3000
