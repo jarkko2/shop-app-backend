@@ -2,9 +2,6 @@ require('dotenv').config()
 const express = require('express')
 var cors = require('cors')
 const app = express()
-const PORT = process.env.PORT || 5001
-const { MONGO_URI } = process.env
-const { SESSION_SECRET } = process.env
 
 const passport = require('passport')
 const session = require('express-session')
@@ -39,7 +36,7 @@ app.use(express.json())
 
 // User authentication
 app.use(session({
-  secret: SESSION_SECRET || 'secret',
+  secret: config.SESSION_SECRET || 'secret',
   resave: false,
   saveUninitialized: false,
   store: new MongoDBStore({
