@@ -22,4 +22,4 @@ jobs:
       - name: Build and push the Docker image
         run: |
           docker build -t jarkko1/backend:latest ./
-          docker push jarkko1/backend:latest
+          docker push jarkko1/shop-app:latest
