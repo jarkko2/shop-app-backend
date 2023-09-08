@@ -7,6 +7,7 @@ services:
     volumes:
        - mongodb:/data/db
     ports:
+      # Using 7017 port locally to prevent conflict with windows
       - 7017:27017
     environment:
       - MONGO_INITDB_DATABASE=shopapp
